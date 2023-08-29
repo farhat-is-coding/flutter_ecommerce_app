@@ -19,10 +19,10 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      initialRoute: '/product_details',
+      initialRoute: '/store',
       routes: {
         '/':(context) => const HomeScreen(),
-        '/store':(context) => const StoreScreen(),
+        '/store':(context) =>  StoreScreen(),
         '/product_details':(context) => const ProductDetailsScreen(),
       },
     );
