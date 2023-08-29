@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app/screens/home/home.dart';
+import 'package:flutter_ecommerce_app/screens/product_details/product_details.dart';
 import 'package:flutter_ecommerce_app/screens/store/store.dart';
 
 void main() {
@@ -18,10 +19,11 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      initialRoute: '/',
+      initialRoute: '/product_details',
       routes: {
         '/':(context) => const HomeScreen(),
         '/store':(context) => const StoreScreen(),
+        '/product_details':(context) => const ProductDetailsScreen(),
       },
     );
   }
