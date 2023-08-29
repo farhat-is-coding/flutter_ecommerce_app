@@ -95,12 +95,12 @@ class _StoreScreenState extends State<StoreScreen> {
           // showFilter
           //     ? 
           //     : Container(),
-
+          SizedBox(height: 10,),
           Expanded(
             child: GridView.builder(
               gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: height * 0.4,
-                mainAxisExtent: height * 0.3 // Number of columns
+                maxCrossAxisExtent: width * 0.5, // width
+                mainAxisExtent: height * 0.279 // height
               ),
               itemCount: iceCreamData.length,
               itemBuilder: (context, index) {
