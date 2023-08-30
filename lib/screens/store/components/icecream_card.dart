@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/svg.dart';
 
 class IceCreamCard extends StatelessWidget {
@@ -34,19 +35,21 @@ class IceCreamCard extends StatelessWidget {
                   Align(
                     alignment: Alignment.center,
                     child: Container(
-                        width: 140,
-                        height: 140,
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle, color: Color(0xffe6e6e6))),
+                      width: 140,
+                      height: 140,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.blueAccent.shade100,
+                      ),
+                    ).animate().fadeIn(duration: 1.seconds)
                   ),
-                  
                   Align(
                     alignment: Alignment.center,
                     child: Image.asset(
                       iceCream['imgurl'],
                       width: 140,
                       height: 140,
-                    ),
+                    ).animate().shimmer(delay: 1.seconds),
                   ),
                 ],
               ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app/screens/cart/components/card.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'cart_list.dart';
 
 class Cart extends StatefulWidget {
@@ -26,19 +27,29 @@ class _CartState extends State<Cart> {
             ),
             child: SizedBox(
               height: height * 0.6,
-              child: ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: cartList.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.only(top: 5.0),
-                      child: ProductCard(
-                        width: width,
-                        index: index,
-                        notifyParent: refresh,
-                      ),
-                    );
-                  }),
+              child: AnimationLimiter(
+                child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: cartList.length,
+                    itemBuilder: (context, index) {
+                      return AnimationConfiguration.staggeredList(
+                        position: index,
+                        duration: const Duration(milliseconds: 475),
+                        child: SlideAnimation(
+                          verticalOffset: 200.0,
+                          child: FadeInAnimation(
+                              child: Padding(
+                            padding: const EdgeInsets.only(top: 5.0),
+                            child: ProductCard(
+                              width: width,
+                              index: index,
+                              notifyParent: refresh,
+                            ),
+                          ),),
+                        ),
+                      );
+                    }),
+              ),
             ),
           ),
           Padding(

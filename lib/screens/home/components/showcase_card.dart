@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import '../../icecreamdata.dart';
 
 class ShowcaseSliderCard extends StatelessWidget {
@@ -73,12 +74,15 @@ class ShowcaseSliderCard extends StatelessWidget {
             child: Align(
               alignment: Alignment.centerRight,
               child: Image.asset(
+                width: width * 0.55,
                 '${iceCreamData[index]['imgurl']}',
                 fit: BoxFit.cover,
               ),
             ),
           ),
-        ],
+        ]
+            .animate(autoPlay: true)
+            .fadeIn(delay: 200.milliseconds, duration: 700.milliseconds),
       ),
     );
   }

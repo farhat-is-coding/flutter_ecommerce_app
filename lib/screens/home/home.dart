@@ -2,9 +2,11 @@ import 'dart:ui';
 
 // import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_ecommerce_app/screens/home/components/category_item.dart';
 import 'package:flutter_ecommerce_app/screens/home/components/items_slider.dart';
 import 'package:flutter_ecommerce_app/screens/home/components/showcase_slider.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 // import 'package:flutter_svg/flutter_svg.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -97,7 +99,7 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
             ),
-          ],
+          ].animate(interval: 400.ms).fadeIn(duration: 300.ms),
         ),
       ),
     );

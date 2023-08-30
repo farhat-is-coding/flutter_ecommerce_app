@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app/screens/store/components/filters_row.dart';
 import 'package:flutter_ecommerce_app/screens/store/components/icecream_card.dart';
 import 'package:flutter_ecommerce_app/screens/store/components/search_bar.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 class StoreScreen extends StatefulWidget {
   StoreScreen({super.key});
@@ -12,7 +13,6 @@ class StoreScreen extends StatefulWidget {
 }
 
 class _StoreScreenState extends State<StoreScreen> {
-  
   // will shift to state file after incorporating BLoC
   final iceCreamData = [
     {
@@ -74,7 +74,6 @@ class _StoreScreenState extends State<StoreScreen> {
     }
   ];
 
-  
   bool showFilter = false;
 
   @override
@@ -87,32 +86,41 @@ class _StoreScreenState extends State<StoreScreen> {
       ),
       body: Column(
         children: [
-         
-         SearchRow(),
+          SearchRow(),
 
-         FiltersRow(),
+          FiltersRow(),
 
           // showFilter
-          //     ? 
+          //     ?
           //     : Container(),
-          SizedBox(height: 10,),
+          SizedBox(
+            height: 10,
+          ),
           Expanded(
-            child: GridView.builder(
-              gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: width * 0.5, // width
-                mainAxisExtent: height * 0.279 // height
+            child: AnimationLimiter(
+              child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                    maxCrossAxisExtent: width * 0.5, // width
+                    mainAxisExtent: height * 0.279 // height
+                    ),
+                itemCount: iceCreamData.length,
+                itemBuilder: (context, index) {
+                  final iceCream = iceCreamData[index];
+                  return AnimationConfiguration.staggeredGrid(
+                    position: index,
+                    duration: const Duration(milliseconds: 375),
+                    columnCount: 2,
+                    child: ScaleAnimation(
+                      child: FadeInAnimation(
+                          child: IceCreamCard(iceCream: iceCream)),
+                    ),
+                  );
+                },
               ),
-              itemCount: iceCreamData.length,
-              itemBuilder: (context, index) {
-                final iceCream = iceCreamData[index];
-                return IceCreamCard(iceCream: iceCream);
-              },
             ),
           ),
-
         ],
       ),
     );
   }
 }
-

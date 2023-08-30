@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 class CategoryItem extends StatelessWidget {
   const CategoryItem({super.key, required this.name, required this.image});
