@@ -25,7 +25,7 @@ class HomeScreen extends StatelessWidget {
           children: [
             Center(
               child: Text(
-                'Whats Cold?',
+                'What\'s Cold?',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 24,
