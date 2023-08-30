@@ -2,4 +2,11 @@
 
 //global list to simulate cart list
 //will be replaced with actual cart
-List cartList = [1, 2, 3, 4, 5, 6];
+List cartList = [
+  'choi seungcheol',
+  'yoon jeonghan',
+  'joshua hong',
+  'moon junhui',
+  'kwon soonyoung',
+  'jeon wonwoo',
+];

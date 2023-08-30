@@ -18,6 +18,9 @@ class ProductCard extends StatefulWidget {
 
 class _ProductCardState extends State<ProductCard> {
   double left = 0;
+  //DO NOT STORE AMOUNT HERE - STORE IT WITH THE ACTUAL CART CUZ THIS IS A DISASTER
+  //(only for testing purposes)
+  int amount = 1; //amount aka quantity
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -47,7 +50,7 @@ class _ProductCardState extends State<ProductCard> {
                   cartList.remove(cartList[widget.index]);
                   widget.notifyParent();
                 },
-                backgroundColor: Color.fromARGB(255, 99, 101, 241),
+                backgroundColor: const Color.fromARGB(255, 99, 101, 241),
                 foregroundColor: Colors.white,
                 icon: Icons.remove_circle,
               ),
@@ -62,7 +65,7 @@ class _ProductCardState extends State<ProductCard> {
                   height: 100,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
-                    image: DecorationImage(
+                    image: const DecorationImage(
                       image: AssetImage('assets/ice/1.png'),
                       fit: BoxFit.cover,
                     ),
@@ -74,8 +77,8 @@ class _ProductCardState extends State<ProductCard> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Product Name ${widget.index}',
-                      style: TextStyle(
+                      ' ${cartList[widget.index]}',
+                      style: const TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.bold,
                       ),
@@ -84,29 +87,47 @@ class _ProductCardState extends State<ProductCard> {
                     //+ - buttons
                     Row(
                       children: [
-                        Container(
-                          width: 20,
-                          height: 20,
-                          decoration: BoxDecoration(
-                            color: Color(0xFFAEB9E4),
-                            borderRadius: BorderRadius.circular(10),
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              amount--;
+                              if (amount == 0) {
+                                cartList.remove(cartList[widget.index]);
+                                widget.notifyParent();
+                              }
+                            });
+                          },
+                          child: Container(
+                            width: 20,
+                            height: 20,
+                            decoration: BoxDecoration(
+                              color: Color(0xFFAEB9E4),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Icon(Icons.remove, size: 15),
                           ),
-                          child: Icon(Icons.remove, size: 15),
                         ),
                         SizedBox(width: 5),
-                        Text('1'),
+                        Text('${amount.toString()}'),
                         SizedBox(width: 5),
-                        Container(
-                          width: 20,
-                          height: 20,
-                          decoration: BoxDecoration(
-                            color: Color(0xFFAEB9E4),
-                            borderRadius: BorderRadius.circular(10),
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              amount++;
+                            });
+                          },
+                          child: Container(
+                            width: 20,
+                            height: 20,
+                            decoration: BoxDecoration(
+                              color: Color(0xFFAEB9E4),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: const Icon(Icons.add, size: 15),
                           ),
-                          child: Icon(Icons.add, size: 15),
                         ),
-                        SizedBox(width: 10),
-                        Text(
+                        const SizedBox(width: 10),
+                        const Text(
                           '\$',
                           style: TextStyle(
                             fontSize: 8,
