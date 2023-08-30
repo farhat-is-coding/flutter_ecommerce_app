@@ -16,13 +16,21 @@ class ProductDetailsScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Product Details'),
       ),
-      body: const Column(
+      body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           IceCreamImageHeader(),
           IceCreamInfo(),
           QuantityCounter(),
-          CartButton()
+          CartButton(),
+          //button to view cart
+          //will be replaced later
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamed(context, '/cart');
+            },
+            child: const Text('View Cart'),
+          ),
         ],
       ),
     );

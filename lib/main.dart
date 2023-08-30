@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app/screens/home/home.dart';
 import 'package:flutter_ecommerce_app/screens/product_details/product_details.dart';
 import 'package:flutter_ecommerce_app/screens/store/store.dart';
+import 'package:flutter_ecommerce_app/screens/cart/cart.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,16 +17,16 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.cyan),
         useMaterial3: true,
       ),
-      initialRoute: '/product_details',
+      initialRoute: '/',
       routes: {
-        '/':(context) => const HomeScreen(),
-        '/store':(context) => const StoreScreen(),
-        '/product_details':(context) => const ProductDetailsScreen(),
+        '/': (context) => const HomeScreen(),
+        '/store': (context) => StoreScreen(),
+        '/product_details': (context) => const ProductDetailsScreen(),
+        '/cart': (context) => const Cart(),
       },
     );
   }
 }
-
