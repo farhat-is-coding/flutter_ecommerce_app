@@ -25,7 +25,7 @@ class IceCreamItemsSlider extends StatelessWidget {
         itemWidth: width * 0.9,
         itemHeight: height * 0.45,
         itemBuilder: (context, index) {
-          return IceCreamItemsSliderCard();
+          return IceCreamItemsSliderCard(index: index);
         },
         itemCount: 5,
       ),
