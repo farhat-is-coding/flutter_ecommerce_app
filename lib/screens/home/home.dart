@@ -23,12 +23,15 @@ class HomeScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text(
-              'Whats Cold?',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.w600,
-                color: Colors.cyanAccent.shade700,
+            Center(
+              child: Text(
+                'Whats Cold?',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.cyanAccent.shade700,
+                ),
               ),
             ),
             const ShowcaseSlider(),

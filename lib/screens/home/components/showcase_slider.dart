@@ -21,11 +21,16 @@ class ShowcaseSlider extends StatelessWidget {
           ],
         ),
       ),
-      height: height * 0.225,
+      height: height * 0.24,
       child: Swiper(
         autoplay: true,
         itemBuilder: (BuildContext context, int index) {
-          return ShowcaseSliderCard();
+          return Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: ShowcaseSliderCard(
+              index: index,
+            ),
+          );
         },
         itemCount: 5,
         pagination: const SwiperPagination(),

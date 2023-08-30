@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import '../../icecreamdata.dart';
 
 class ShowcaseSliderCard extends StatelessWidget {
-  const ShowcaseSliderCard({super.key});
+  final int index;
+  const ShowcaseSliderCard({super.key, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -21,36 +23,43 @@ class ShowcaseSliderCard extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Column(
+                  Column(
                     children: [
                       CircleAvatar(
-                        radius: 25,
+                        radius: 20,
                         backgroundImage: AssetImage(
-                          'assets/pattern/1.png',
+                          '${iceCreamData[index]['iconurl']}',
                         ),
                       ),
                       Text(
-                        'koi offer nai ha shoreya',
-                        style: TextStyle(
+                        '${iceCreamData[index]['name']}',
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
                           fontSize: 16,
                           color: Color(0xff4c5cbf),
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ],
                   ),
-                  Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
-                    decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(12)),
-                        color: Color.fromARGB(255, 230, 233, 251)),
-                    width: width * 0.3,
-                    child: const Center(
-                      child: Text(
-                        'Explore',
-                        style: TextStyle(
-                          fontSize: 15,
-                          color: Color(0xff4c5cbf),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/store');
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 4, vertical: 8),
+                      decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(12)),
+                          color: Color.fromARGB(255, 230, 233, 251)),
+                      width: width * 0.3,
+                      child: const Center(
+                        child: Text(
+                          'Explore',
+                          style: TextStyle(
+                            fontSize: 15,
+                            color: Color(0xff4c5cbf),
+                          ),
                         ),
                       ),
                     ),
@@ -60,11 +69,11 @@ class ShowcaseSliderCard extends StatelessWidget {
             ),
           ),
           Transform.translate(
-            offset: const Offset(40, 0),
+            offset: const Offset(20, 0),
             child: Align(
               alignment: Alignment.centerRight,
               child: Image.asset(
-                'assets/ice/6.png',
+                '${iceCreamData[index]['imgurl']}',
                 fit: BoxFit.cover,
               ),
             ),
