@@ -36,31 +36,66 @@ class HomeScreen extends StatelessWidget {
             ),
             const ShowcaseSlider(),
             const IceCreamItemsSlider(),
-            Text(
-              'Categories',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.w600,
-                color: Colors.cyanAccent.shade700,
+            Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Categories',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.cyanAccent.shade700,
+                    ),
+                  ),
+                  Icon(
+                    Icons.arrow_forward_ios,
+                    color: Colors.cyanAccent.shade700,
+                  )
+                ],
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamed(context, '/store');
-                  },
-                  child: CategoryItem(
-                    name: 'baaten',
-                    image: 'assets/icon3.png',
-                  ),
+            Padding(
+              padding: const EdgeInsets.only(
+                right: 3,
+                left: 3,
+                bottom: 10,
+              ),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/store');
+                      },
+                      child: const CategoryItem(
+                        name: 'Strawberry',
+                        image: 'assets/pattern/1.png',
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/store');
+                      },
+                      child: const CategoryItem(
+                        name: 'Coffee',
+                        image: 'assets/pattern/10.png',
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/store');
+                      },
+                      child: const CategoryItem(
+                        name: 'Mint',
+                        image: 'assets/pattern/3.png',
+                      ),
+                    ),
+                  ],
                 ),
-                CategoryItem(
-                  name: 'cant think of shi',
-                  image: 'assets/success.png',
-                ),
-              ],
+              ),
             ),
           ],
         ),
