@@ -82,7 +82,7 @@ class ShowcaseSliderCard extends StatelessWidget {
           ),
         ]
             .animate(autoPlay: true)
-            .fadeIn(delay: 200.milliseconds, duration: 700.milliseconds),
+            .shakeX(),
       ),
     );
   }
