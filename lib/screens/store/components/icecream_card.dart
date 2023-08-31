@@ -20,7 +20,9 @@ class IceCreamCard extends StatelessWidget {
       ),
       child: GestureDetector(
         onTap: () {
-          Navigator.pushNamed(context, '/product_details');
+          Navigator.pushNamed(context, '/product_details', arguments: {
+            'iceCream': iceCream,
+          });
         },
         child: Container(
           decoration: BoxDecoration(
