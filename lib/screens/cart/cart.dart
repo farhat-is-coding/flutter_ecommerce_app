@@ -38,14 +38,15 @@ class _CartState extends State<Cart> {
                         child: SlideAnimation(
                           verticalOffset: 200.0,
                           child: FadeInAnimation(
-                              child: Padding(
-                            padding: const EdgeInsets.only(top: 5.0),
-                            child: ProductCard(
-                              width: width,
-                              index: index,
-                              notifyParent: refresh,
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 5.0),
+                              child: ProductCard(
+                                width: width,
+                                index: index,
+                                notifyParent: refresh,
+                              ),
                             ),
-                          ),),
+                          ),
                         ),
                       );
                     }),
@@ -121,10 +122,10 @@ class _CartState extends State<Cart> {
                     thickness: 1,
                   ),
                 ),
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Padding(
+                    Padding(
                       padding: EdgeInsets.only(
                         left: 15,
                       ),
@@ -137,12 +138,12 @@ class _CartState extends State<Cart> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(
+                      padding: EdgeInsets.only(
                         right: 15,
                       ),
                       child: Text(
                         '\$16.23',
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
                         ),
@@ -153,11 +154,18 @@ class _CartState extends State<Cart> {
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                          const Color(0xff4c5cbf)),
+                    ),
                     onPressed: () {},
                     child: SizedBox(
                       width: width * 0.8,
                       child: const Text(
                         'Checkout',
+                        style: TextStyle(
+                          color: Color.fromARGB(255, 230, 233, 251),
+                        ),
                         textAlign: TextAlign.center,
                       ),
                     ),

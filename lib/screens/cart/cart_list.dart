@@ -3,6 +3,7 @@
 //global list to simulate cart list
 //will be replaced with actual cart
 List cartList = [
+  'kim mingyu',
   'choi seungcheol',
   'yoon jeonghan',
   'joshua hong',
