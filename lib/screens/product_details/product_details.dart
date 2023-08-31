@@ -6,12 +6,20 @@ import 'package:flutter_ecommerce_app/screens/product_details/components/quantit
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
-  const ProductDetailsScreen({super.key});
+  // final Map<String, dynamic> iceCream;
+
+  const ProductDetailsScreen({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+
+    final args =
+        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+
     // I am assuming, that cart button, quantity counter will use the BLoC pattern
     return Scaffold(
       appBar: AppBar(
@@ -26,17 +34,32 @@ class ProductDetailsScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                IceCreamImageHeader(),
-                IceCreamInfo(),
-                QuantityCounter(),
+                IceCreamImageHeader(iceCreamImgUrl: args['iceCream']['imgurl']),
+                IceCreamInfo(iceCream: args['iceCream']),
+                const QuantityCounter(),
                 CartButton(),
                 //button to view cart
                 //will be replaced later
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/cart');
-                  },
-                  child: const Text('View Cart'),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    top: 5,
+                  ),
+                  child: Center(
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                            const Color(0xff4c5cbf)),
+                      ),
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/cart');
+                      },
+                      child: const Text(
+                        'View Cart',
+                        style: TextStyle(
+                            color: Color.fromARGB(255, 230, 233, 251)),
+                      ),
+                    ),
+                  ),
                 ),
               ],
             ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 class CartButton extends StatelessWidget {
   const CartButton({super.key});
@@ -9,15 +10,15 @@ class CartButton extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
     return Center(
       child: SizedBox(
-        width: width * 0.4,
+        width: width * 0.5,
         height: height * 0.08,
         child: ElevatedButton(
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all<Color>(
-                Color.fromARGB(255, 230, 233, 251)),
+                const Color.fromARGB(255, 230, 233, 251)),
           ),
           onPressed: () {},
-          child: Row(
+          child: const Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(
@@ -30,7 +31,10 @@ class CartButton extends StatelessWidget {
               ),
             ],
           ),
-        ),
+        ).animate().shimmer(
+              delay: 2.seconds,
+              duration: 1.seconds,
+            ),
       ),
     );
   }

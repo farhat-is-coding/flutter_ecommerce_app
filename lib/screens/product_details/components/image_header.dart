@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 class IceCreamImageHeader extends StatelessWidget {
-  const IceCreamImageHeader({super.key});
+  final String iceCreamImgUrl;
+  const IceCreamImageHeader({super.key, required this.iceCreamImgUrl});
 
   @override
   Widget build(BuildContext context) {
@@ -21,11 +23,23 @@ class IceCreamImageHeader extends StatelessWidget {
             ),
           ),
         ),
-        Image.asset(
-          'assets/ice/6.png',
-          fit: BoxFit.cover,
-          width: width,
-          height: height * 0.3,
+        // Image.asset(
+        //   iceCreamImgUrl,
+        //   fit: BoxFit.cover,
+        //   width: width,
+        //   height: height * 0.3,
+        // ),
+        Align(
+          alignment: Alignment.center,
+          child: Image.asset(
+            iceCreamImgUrl,
+            width: width,
+            height: height * 0.3,
+            fit: BoxFit.cover,
+          ).animate().shimmer(
+                delay: 2.seconds,
+                duration: 1.seconds,
+              ),
         ),
       ],
     );
