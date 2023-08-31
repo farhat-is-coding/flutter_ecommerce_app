@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_svg/svg.dart';
+// import 'package:flutter_svg/svg.dart';
 
 class IceCreamCard extends StatelessWidget {
   final Map<String, dynamic> iceCream;
 
-  IceCreamCard({required this.iceCream});
+  const IceCreamCard({super.key, required this.iceCream});
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
+    // double width = MediaQuery.of(context).size.width;
+    // double height = MediaQuery.of(context).size.height;
     return Padding(
       padding: const EdgeInsets.only(
         top: 5,

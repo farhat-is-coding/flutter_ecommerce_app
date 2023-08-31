@@ -14,19 +14,28 @@ class SearchRow extends StatelessWidget {
           child: SizedBox(
             width: width * 0.8,
             height: height * 0.05,
-            child: const TextField(
+            child: TextField(
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderSide: BorderSide(
-                      color: Colors.grey, width: 0.5, style: BorderStyle.solid),
+                    color: Colors.blueAccent.shade200,
+                    width: 1,
+                    style: BorderStyle.solid,
+                  ),
                   borderRadius: BorderRadius.all(Radius.circular(10)),
                 ),
-                // border: InputBorder.none,
-                contentPadding: EdgeInsets.symmetric(
-                    vertical: 7), //Change this value to custom as you like
-                isDense: true, // and add this line
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.blueAccent.shade200,
+                    width: 1,
+                    style: BorderStyle.solid,
+                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                ),
+                contentPadding: const EdgeInsets.symmetric(vertical: 7),
+                isDense: true,
                 hintText: 'What are you looking for?',
-                prefixIcon: Icon(
+                prefixIcon: const Icon(
                   Icons.search,
                   size: 30,
                 ),
@@ -34,20 +43,28 @@ class SearchRow extends StatelessWidget {
             ),
           ),
         ),
-        Container(
-          height: 50,
-          width: 50,
-          decoration: BoxDecoration(
-            color: Colors.grey.shade200,
-            borderRadius: BorderRadius.circular(10),
+        Padding(
+          padding: const EdgeInsets.only(
+            right: 5.0,
+            bottom: 5.0,
           ),
-          child: IconButton(
-            onPressed: () {
-              // setState(() {
-              //   showFilter = !showFilter;
-              // });
-            },
-            icon: Icon(Icons.filter_list),
+          child: Container(
+            height: 50,
+            width: 50,
+            decoration: BoxDecoration(
+              color: Colors.blueAccent.shade100,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: IconButton(
+              onPressed: () {
+                // setState(() {
+                //   showFilter = !showFilter;
+                // });
+              },
+              icon: const Icon(
+                Icons.filter_list,
+              ),
+            ),
           ),
         ),
       ],
