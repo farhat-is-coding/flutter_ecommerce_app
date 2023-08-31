@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_app/model/ice_cream.dart';
 
 class IceCreamInfo extends StatelessWidget {
-  final Map<String, dynamic> iceCream;
+  final IceCream iceCream;
   const IceCreamInfo({super.key, required this.iceCream});
 
   @override
@@ -12,7 +13,7 @@ class IceCreamInfo extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            iceCream['name'],
+            iceCream.name,
             style: const TextStyle(
               color: Color(0xff4c5cbf),
               fontSize: 22,
@@ -23,7 +24,7 @@ class IceCreamInfo extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                '\$ ${iceCream['price']}',
+                '\$ ${iceCream.price}',
                 style: const TextStyle(
                   color: Color(0xff4c5cbf),
                   fontSize: 24,
@@ -31,7 +32,7 @@ class IceCreamInfo extends StatelessWidget {
                 ),
               ),
               Text(
-                '🔥 ${iceCream['rating']}',
+                '🔥 ${iceCream.rating}',
                 style: const TextStyle(
                   color: Color(0xff4c5cbf),
                   fontSize: 24,
@@ -41,13 +42,13 @@ class IceCreamInfo extends StatelessWidget {
             ],
           ),
           Text(
-            'Flavor: ${iceCream['flavor']}',
+            'Flavor: ${iceCream.flavor}',
             style: const TextStyle(
               color: Color(0xff4c5cbf),
             ),
           ),
           Text(
-            'Allergens: ${iceCream['allergens'].toString().replaceAll('[', '').replaceAll(']', '')}',
+            'Allergens: ${iceCream.allergens.toString().replaceAll('[', '').replaceAll(']', '')}',
             style: const TextStyle(
               color: Color(0xff4c5cbf),
             ),
@@ -61,7 +62,7 @@ class IceCreamInfo extends StatelessWidget {
             ),
           ),
           Text(
-            iceCream['description'],
+            iceCream.description,
             style: const TextStyle(
               color: Color(0xff4c5cbf),
               fontSize: 16,

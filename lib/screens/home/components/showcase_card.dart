@@ -29,11 +29,11 @@ class ShowcaseSliderCard extends StatelessWidget {
                       CircleAvatar(
                         radius: 20,
                         backgroundImage: AssetImage(
-                          '${iceCreamData[index]['iconurl']}',
+                          '${iceCreamData[index].iconurl}',
                         ),
                       ),
                       Text(
-                        '${iceCreamData[index]['name']}',
+                        '${iceCreamData[index].name}',
                         textAlign: TextAlign.center,
                         style: const TextStyle(
                           fontSize: 16,
@@ -75,7 +75,7 @@ class ShowcaseSliderCard extends StatelessWidget {
               alignment: Alignment.centerRight,
               child: Image.asset(
                 width: width * 0.55,
-                '${iceCreamData[index]['imgurl']}',
+                '${iceCreamData[index].imgurl}',
                 fit: BoxFit.cover,
               ),
             ),

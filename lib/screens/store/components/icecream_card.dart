@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_ecommerce_app/model/ice_cream.dart';
 // import 'package:flutter_svg/svg.dart';
 
 class IceCreamCard extends StatelessWidget {
-  final Map<String, dynamic> iceCream;
+  final IceCream iceCream;
 
   const IceCreamCard({super.key, required this.iceCream});
 
@@ -20,9 +21,7 @@ class IceCreamCard extends StatelessWidget {
       ),
       child: GestureDetector(
         onTap: () {
-          Navigator.pushNamed(context, '/product_details', arguments: {
-            'iceCream': iceCream,
-          });
+          Navigator.pushNamed(context, '/product_details', arguments: iceCream);
         },
         child: Container(
           decoration: BoxDecoration(
@@ -33,7 +32,7 @@ class IceCreamCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                iceCream['name'],
+                iceCream.name,
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
                   color: Colors.blueGrey.shade800,
@@ -59,7 +58,7 @@ class IceCreamCard extends StatelessWidget {
                     Align(
                       alignment: Alignment.center,
                       child: Image.asset(
-                        iceCream['imgurl'],
+                        iceCream.imgurl,
                         width: 140,
                         height: 140,
                       ).animate().shimmer(delay: 1.seconds),
@@ -68,7 +67,7 @@ class IceCreamCard extends StatelessWidget {
                 ),
               ),
               Text(
-                '\$${iceCream['price'].toStringAsFixed(2)}',
+                '\$${iceCream.price.toStringAsFixed(2)}',
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
                   color: Colors.blueGrey.shade800,
