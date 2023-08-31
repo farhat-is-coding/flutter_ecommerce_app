@@ -81,8 +81,6 @@ class ShowcaseSliderCard extends StatelessWidget {
             ),
           ),
         ]
-            .animate(autoPlay: true)
-            .shakeX(),
       ),
     );
   }

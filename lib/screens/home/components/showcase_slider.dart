@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app/screens/home/components/showcase_card.dart';
@@ -23,6 +25,10 @@ class ShowcaseSlider extends StatelessWidget {
       ),
       height: height * 0.24,
       child: Swiper(
+        // onIndexChanged: (value) {
+        //   log(value.toString());
+        //   // run the animation again if the index is the index passed
+        // },
         autoplay: true,
         itemBuilder: (BuildContext context, int index) {
           return Padding(

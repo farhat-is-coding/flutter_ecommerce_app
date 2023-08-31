@@ -37,7 +37,7 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             const ShowcaseSlider(),
-            const IceCreamItemsSlider(),
+             IceCreamItemsSlider(),
             Center(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
