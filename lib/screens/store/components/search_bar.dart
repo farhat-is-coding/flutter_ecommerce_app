@@ -5,7 +5,7 @@ class SearchRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-      double width = MediaQuery.of(context).size.width;
+    double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Row(
       children: [
@@ -16,11 +16,16 @@ class SearchRow extends StatelessWidget {
             height: height * 0.05,
             child: const TextField(
               decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderSide: BorderSide(
+                      color: Colors.grey, width: 0.5, style: BorderStyle.solid),
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                ),
                 // border: InputBorder.none,
                 contentPadding: EdgeInsets.symmetric(
-                    vertical: 10), //Change this value to custom as you like
+                    vertical: 7), //Change this value to custom as you like
                 isDense: true, // and add this line
-                hintText: 'what you are looking for',
+                hintText: 'What are you looking for?',
                 prefixIcon: Icon(
                   Icons.search,
                   size: 30,

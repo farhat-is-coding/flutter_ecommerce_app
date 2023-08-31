@@ -12,7 +12,12 @@ class IceCreamCard extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Padding(
-      padding: const EdgeInsets.only(top: 3, left: 3, right: 3, bottom: 3),
+      padding: const EdgeInsets.only(
+        top: 5,
+        left: 2,
+        right: 2,
+        bottom: 5,
+      ),
       child: GestureDetector(
         onTap: () {
           Navigator.pushNamed(context, '/product_details');
@@ -25,40 +30,47 @@ class IceCreamCard extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(iceCream['name'],
-                  style: TextStyle(fontWeight: FontWeight.w500)),
-              SizedBox(
-                height: 10,
+              Text(
+                iceCream['name'],
+                style: TextStyle(
+                  fontWeight: FontWeight.w500,
+                  color: Colors.blueGrey.shade800,
+                ),
               ),
-              Stack(
-                children: [
-                  Align(
-                    alignment: Alignment.center,
-                    child: Container(
-                      width: 140,
-                      height: 140,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.blueAccent.shade100,
-                      ),
-                    ).animate().fadeIn(duration: 1.seconds)
-                  ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Image.asset(
-                      iceCream['imgurl'],
-                      width: 140,
-                      height: 140,
-                    ).animate().shimmer(delay: 1.seconds),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 10,
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 3,
+                  bottom: 3,
+                ),
+                child: Stack(
+                  children: [
+                    Align(
+                        alignment: Alignment.center,
+                        child: Container(
+                          width: 140,
+                          height: 140,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.blueAccent.shade100,
+                          ),
+                        ).animate().fadeIn(duration: 1.seconds)),
+                    Align(
+                      alignment: Alignment.center,
+                      child: Image.asset(
+                        iceCream['imgurl'],
+                        width: 140,
+                        height: 140,
+                      ).animate().shimmer(delay: 1.seconds),
+                    ),
+                  ],
+                ),
               ),
               Text(
                 '\$${iceCream['price'].toStringAsFixed(2)}',
-                style: TextStyle(fontWeight: FontWeight.w500),
+                style: TextStyle(
+                  fontWeight: FontWeight.w500,
+                  color: Colors.blueGrey.shade800,
+                ),
               ),
             ],
           ),
