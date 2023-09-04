@@ -14,10 +14,10 @@ class IceCreamCard extends StatelessWidget {
     // double height = MediaQuery.of(context).size.height;
     return Padding(
       padding: const EdgeInsets.only(
-        top: 5,
-        left: 2,
-        right: 2,
-        bottom: 5,
+        top: 3,
+        left: 3,
+        right: 3,
+        bottom: 3,
       ),
       child: GestureDetector(
         onTap: () {

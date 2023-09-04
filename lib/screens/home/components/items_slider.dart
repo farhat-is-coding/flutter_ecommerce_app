@@ -3,37 +3,38 @@ import 'dart:ui';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_ecommerce_app/cubit/swiper_cubit/swiper_cubit.dart';
 import 'package:flutter_ecommerce_app/screens/home/components/items_card.dart';
 
-class IceCreamItemsSlider extends StatefulWidget {
+class IceCreamItemsSlider extends StatelessWidget {
   IceCreamItemsSlider({super.key});
 
-  @override
-  State<IceCreamItemsSlider> createState() => _IceCreamItemsSliderState();
-}
-
-class _IceCreamItemsSliderState extends State<IceCreamItemsSlider> {
-  int idx = 0;
-  bool showContent = true;
+  // if I was making a cubit of this, I wouldve updated the index in the cubit
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+
+    final swiperCubit = SwiperCubit();
+
     return Container(
       height: height * 0.5,
       child: Swiper(
-        
         onIndexChanged: (value) {
-          setState(() {
-            showContent = false;
-          });
-          Future.delayed(Duration(milliseconds: 50), () {
-            setState(() {
-              idx = value;
-              showContent = true;
-              
-            });
-          });
+          // call the cubit here
+          swiperCubit.startSwiper(value);
+          // context.read<SwiperCubit>().startSwiper(value);
+
+          // setState(() {
+          //   showContent = false;
+          // });
+          // Future.delayed(Duration(milliseconds: 50), () {
+          //   setState(() {
+          //     idx = value;
+          //     showContent = true;
+          //   });
+          // });
         },
         layout: SwiperLayout.CUSTOM,
         customLayoutOption: CustomLayoutOption(startIndex: -1, stateCount: 3)
@@ -47,7 +48,11 @@ class _IceCreamItemsSliderState extends State<IceCreamItemsSlider> {
         itemWidth: width * 0.9,
         itemHeight: height * 0.45,
         itemBuilder: (context, index) {
-          return IceCreamItemsSliderCard(index: index, showContent: showContent, idx:idx);
+          return BlocProvider.value(
+            value: swiperCubit,
+            child: IceCreamItemsSliderCard(
+                index: index),
+          );
         },
         itemCount: 5,
       ),

@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_ecommerce_app/cart/bloc/cart_bloc.dart';
+import 'package:flutter_ecommerce_app/bloc/cart/cart_bloc.dart';
 import 'package:flutter_ecommerce_app/screens/cart/components/card.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'cart_list.dart';
@@ -46,27 +46,28 @@ class _CartScreenState extends State<CartScreen> {
                   height: height * 0.6,
                   child: AnimationLimiter(
                     child: ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: cartList.length,
-                        itemBuilder: (context, index) {
-                          return AnimationConfiguration.staggeredList(
-                            position: index,
-                            duration: const Duration(milliseconds: 475),
-                            child: SlideAnimation(
-                              verticalOffset: 200.0,
-                              child: FadeInAnimation(
-                                child: Padding(
-                                  padding: const EdgeInsets.only(top: 5.0),
-                                  child: ProductCard(
-                                    width: width,
-                                    index: index,
-                                    notifyParent: refresh,
-                                  ),
+                      shrinkWrap: true,
+                      itemCount: cartList.length,
+                      itemBuilder: (context, index) {
+                        return AnimationConfiguration.staggeredList(
+                          position: index,
+                          duration: const Duration(milliseconds: 475),
+                          child: SlideAnimation(
+                            verticalOffset: 200.0,
+                            child: FadeInAnimation(
+                              child: Padding(
+                                padding: const EdgeInsets.only(top: 5.0),
+                                child: ProductCard(
+                                  width: width,
+                                  index: index,
+                                  notifyParent: refresh,
                                 ),
                               ),
                             ),
-                          );
-                        }),
+                          ),
+                        );
+                      },
+                    ),
                   ),
                 ),
               ),

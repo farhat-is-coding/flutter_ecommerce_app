@@ -4,7 +4,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_ecommerce_app/cart/bloc/cart_bloc.dart';
+import 'package:flutter_ecommerce_app/bloc/cart/cart_bloc.dart';
 import 'package:flutter_ecommerce_app/screens/home/components/category_item.dart';
 import 'package:flutter_ecommerce_app/screens/home/components/items_slider.dart';
 import 'package:flutter_ecommerce_app/screens/home/components/showcase_slider.dart';
