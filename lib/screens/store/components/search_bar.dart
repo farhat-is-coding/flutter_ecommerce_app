@@ -52,40 +52,59 @@ class SearchRow extends StatelessWidget {
             ),
           ),
         ),
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.only(
-              right: 5.0,
-              bottom: 5.0,
-            ),
-            child: Container(
-              height: 50,
-              width: 50,
-              decoration: BoxDecoration(
-                color: Colors.blueAccent.shade100,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: IconButton(
-                onPressed: () {
-                  context.read<FilterCubit>().toggleFilter();
-                  // if(context.read<FilterCubit>().showFilter == false){
-                  //   FilterCubit filterCubit =
-                  //     BlocProvider.of<FilterCubit>(context);
-                  // context.read<IcecreamCubit>().getIceCreamData(filterCubit);
-                  // }
-                  
-                },
-                icon: const Icon(
-                  Icons.filter_list,
+        BlocBuilder<FilterCubit, FilterState>(
+          builder: (context, state) {
+            final filterCubit = BlocProvider.of<FilterCubit>(context);
+            final filterShow = filterCubit.showFilter;
+
+            return Expanded(
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  right: 5.0,
+                  bottom: 5.0,
+                ),
+                child: Container(
+                  height: 50,
+                  width: 50,
+                  decoration: BoxDecoration(
+                    color: !filterShow
+                        ? Colors.blueAccent.shade100
+                        : Colors.greenAccent.shade100,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: IconButton(
+                    onPressed: !filterShow
+                        ? () {
+                            context.read<FilterCubit>().toggleFilter();
+                          }
+                        : () {
+                            FilterCubit filterCubit =
+                                BlocProvider.of<FilterCubit>(context);
+                            context
+                                .read<IcecreamCubit>()
+                                .getIceCreamData(filterCubit);
+                          },
+                    icon: Icon(
+                      !filterShow ? Icons.filter_list : Icons.add_task,
+                    ),
+                  ),
                 ),
               ),
-            ),
-          ),
+            );
+          },
         ),
         BlocBuilder<FilterCubit, FilterState>(
           builder: (context, state) {
             final filterCubit = BlocProvider.of<FilterCubit>(context);
             final filterShow = filterCubit.showFilter;
+            bool isFilterSelected = false;
+            if (filterCubit.flavor == "Flavors" &&
+                filterCubit.price == "Prices" &&
+                filterCubit.rating == "Ratings") {
+              isFilterSelected = false;
+            } else {
+              isFilterSelected = true;
+            }
 
             return filterShow
                 ? Expanded(
@@ -102,17 +121,22 @@ class SearchRow extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: IconButton(
-                          onPressed: () {
-                            
-                            context.read<FilterCubit>().resetFilter();
-                            FilterCubit filterCubit =
-                                BlocProvider.of<FilterCubit>(context);
-                            context
-                                .read<IcecreamCubit>()
-                                .getIceCreamData(filterCubit);
-                          },
-                          icon: const Icon(
-                            Icons.refresh,
+                          onPressed: isFilterSelected
+                              ? () {
+                                  context.read<FilterCubit>().resetFilter();
+                                  // FilterCubit filterCubit =
+                                  //     BlocProvider.of<FilterCubit>(context);
+                                  // context
+                                  //     .read<IcecreamCubit>()
+                                  //     .getIceCreamData(filterCubit);
+                                }
+                              : () {
+                                  // context.read<FilterCubit>().resetFilter();
+
+                                  context.read<FilterCubit>().toggleFilter();
+                                },
+                          icon: Icon(
+                            isFilterSelected ? Icons.refresh : Icons.close,
                           ),
                         ),
                       ),

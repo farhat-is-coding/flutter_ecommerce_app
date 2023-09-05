@@ -70,7 +70,7 @@ class FiltersRow extends StatelessWidget {
               onChanged: (value) {
                 log('selected value is $value');
                 context.read<FilterCubit>().setFlavor(value!);
-                context.read<IcecreamCubit>().getIceCreamData(filterCubit);
+                // context.read<IcecreamCubit>().getIceCreamData(filterCubit);
               },
               buttonStyleData: ButtonStyleData(
                 height: 50,
@@ -138,7 +138,7 @@ class FiltersRow extends StatelessWidget {
               value: price,
               onChanged: (value) {
                 context.read<FilterCubit>().setPrice(value!);
-                context.read<IcecreamCubit>().getIceCreamData(filterCubit);
+                // context.read<IcecreamCubit>().getIceCreamData(filterCubit);
 
                 // context.read<CartBloc>().cartItems.length;
               },
@@ -208,7 +208,7 @@ class FiltersRow extends StatelessWidget {
               value: rating,
               onChanged: (value) {
                 context.read<FilterCubit>().setRating(value!);
-                context.read<IcecreamCubit>().getIceCreamData(filterCubit);
+                // context.read<IcecreamCubit>().getIceCreamData(filterCubit);
               },
               buttonStyleData: ButtonStyleData(
                 height: 50,
