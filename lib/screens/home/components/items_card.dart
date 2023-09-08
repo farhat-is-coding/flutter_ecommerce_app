@@ -137,10 +137,12 @@ class IceCreamItemsSliderCard extends StatelessWidget {
                       .fadeIn(duration: 250.milliseconds)
                       .animate()
                       .shimmer(delay: 1.seconds)
-                  : [],
+                  : [
+                      Container(),
+                    ],
 
               // swiping means that the swiper is swiping
-              Swiping() => [ Center(child: Container())],
+              Swiping() => [Center(child: Container())],
             }
           ]);
         },

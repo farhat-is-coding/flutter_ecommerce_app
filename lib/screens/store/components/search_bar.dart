@@ -43,11 +43,21 @@ class SearchRow extends StatelessWidget {
                   contentPadding: const EdgeInsets.symmetric(vertical: 7),
                   isDense: true,
                   hintText: 'What are you looking for?',
-                  prefixIcon: const Icon(
-                    Icons.search,
-                    size: 30,
+                  
+                  suffixIcon: IconButton(
+                    onPressed: (){
+                      //  go query
+
+                    },
+                    
+                    icon: Icon(Icons.search),
+                    iconSize: 30,
                   ),
                 ),
+                onSubmitted: (value) {
+                  //  go query
+                  
+                }
               ),
             ),
           ),

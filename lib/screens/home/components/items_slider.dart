@@ -16,8 +16,8 @@ class IceCreamItemsSlider extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
 
-    final swiperCubit = SwiperCubit();
-
+    final swiperCubit =
+        context.select((SwiperCubit swiperCubit) => swiperCubit);
     return Container(
       height: height * 0.5,
       child: Swiper(
@@ -50,8 +50,7 @@ class IceCreamItemsSlider extends StatelessWidget {
         itemBuilder: (context, index) {
           return BlocProvider.value(
             value: swiperCubit,
-            child: IceCreamItemsSliderCard(
-                index: index),
+            child: IceCreamItemsSliderCard(index: index),
           );
         },
         itemCount: 5,
