@@ -3,9 +3,9 @@ import 'dart:developer';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_ecommerce_app/bloc/cart/cart_bloc.dart';
+// import 'package:flutter_ecommerce_app/bloc/cart/cart_bloc.dart';
 import 'package:flutter_ecommerce_app/cubit/filter/filter_cubit.dart';
-import 'package:flutter_ecommerce_app/cubit/icecream/icecream_cubit.dart';
+// import 'package:flutter_ecommerce_app/cubit/icecream/icecream_cubit.dart';
 
 class FiltersRow extends StatelessWidget {
   FiltersRow({super.key});
@@ -19,7 +19,7 @@ class FiltersRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
+    // double height = MediaQuery.of(context).size.height;
     return BlocBuilder<FilterCubit, FilterState>(
       builder: (context, state) {
         final filterCubit = BlocProvider.of<FilterCubit>(context);
@@ -81,7 +81,7 @@ class FiltersRow extends StatelessWidget {
                   border: Border.all(
                     color: Colors.black26,
                   ),
-                  color: Color.fromARGB(0, 245, 245, 245),
+                  color: const Color.fromARGB(0, 245, 245, 245),
                 ),
               ),
               dropdownStyleData: DropdownStyleData(
@@ -151,7 +151,7 @@ class FiltersRow extends StatelessWidget {
                   border: Border.all(
                     color: Colors.black26,
                   ),
-                  color: Color.fromARGB(0, 245, 245, 245),
+                  color: const Color.fromARGB(0, 245, 245, 245),
                 ),
               ),
               dropdownStyleData: DropdownStyleData(
@@ -219,7 +219,7 @@ class FiltersRow extends StatelessWidget {
                   border: Border.all(
                     color: Colors.black26,
                   ),
-                  color: Color.fromARGB(0, 245, 245, 245),
+                  color: const Color.fromARGB(0, 245, 245, 245),
                 ),
               ),
               dropdownStyleData: DropdownStyleData(

@@ -25,7 +25,7 @@ class IceCreamCard extends StatelessWidget {
         },
         child: Container(
           decoration: BoxDecoration(
-            color: Colors.grey.shade200,
+            color: const Color.fromARGB(200, 245, 245, 245),
             borderRadius: BorderRadius.circular(10),
           ),
           child: Column(
@@ -50,9 +50,9 @@ class IceCreamCard extends StatelessWidget {
                         child: Container(
                           width: 140,
                           height: 140,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             shape: BoxShape.circle,
-                            color: Colors.blueAccent.shade100,
+                            color: Color.fromARGB(255, 130, 149, 179),
                           ),
                         ).animate().fadeIn(duration: 1.seconds)),
                     Align(

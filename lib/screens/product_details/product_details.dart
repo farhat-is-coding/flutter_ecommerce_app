@@ -28,14 +28,24 @@ class ProductDetailsScreen extends StatelessWidget {
     // I am assuming, that cart button, quantity counter will use the BLoC pattern
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Product Details'),
+        iconTheme: const IconThemeData(
+          color: Colors.white, //change your color here
+        ),
+        title: const Text(
+          'Product Details',
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+        centerTitle: true,
+        backgroundColor: const Color(0xff6E7E98),
       ),
       body: AnimationConfiguration.synchronized(
         child: SlideAnimation(
-          duration: Duration(milliseconds: 500),
+          duration: const Duration(milliseconds: 500),
           child: FadeInAnimation(
             duration: const Duration(milliseconds: 1500),
-            delay: Duration(milliseconds: 1000),
+            delay: const Duration(milliseconds: 1000),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -55,7 +65,7 @@ class ProductDetailsScreen extends StatelessWidget {
                     child: ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all<Color>(
-                            const Color(0xff4c5cbf)),
+                            const Color(0xff6E7E98),),
                       ),
                       onPressed: () {
                         Navigator.pushNamed(context, '/cart');

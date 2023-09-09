@@ -12,11 +12,11 @@ class IceCreamImageHeader extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          padding: EdgeInsets.only(top: 30, left: 10),
+          padding: const EdgeInsets.only(top: 30, left: 10),
           width: width,
           height: height * 0.3,
           decoration: const BoxDecoration(
-            color: Color.fromARGB(255, 113, 124, 199),
+            color: Color(0xff6E7E98),
             borderRadius: BorderRadius.only(
               bottomRight: Radius.circular(70),
               bottomLeft: Radius.circular(70),

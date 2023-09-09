@@ -8,7 +8,7 @@ import 'package:flutter_ecommerce_app/screens/store/components/filters_row.dart'
 import 'package:flutter_ecommerce_app/screens/store/components/icecream_card.dart';
 import 'package:flutter_ecommerce_app/screens/store/components/search_bar.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import '../icecreamdata.dart';
+// import '../icecreamdata.dart';
 
 class StoreScreen extends StatelessWidget {
   const StoreScreen({super.key});
@@ -22,7 +22,15 @@ class StoreScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Store Screen'),
+        iconTheme: const IconThemeData(
+          color: Colors.white, //change your color here
+        ),
+        title: const Text(
+          'Store Screen',
+          style: TextStyle(color: Colors.white),
+        ),
+        centerTitle: true,
+        backgroundColor: const Color(0xff6E7E98),
       ),
       body: GestureDetector(
         onTap: () {
@@ -44,6 +52,9 @@ class StoreScreen extends StatelessWidget {
 
             return Column(
               children: [
+                const SizedBox(
+                  height: 8,
+                ),
                 const SearchRow(),
                 if (filterShow) FiltersRow().animate().fadeIn().scale(),
                 // else Container(),
@@ -61,7 +72,7 @@ class StoreScreen extends StatelessWidget {
                     child: BlocBuilder<IcecreamCubit, IcecreamState>(
                       builder: (context, state) {
                         if (state is IcecreamLoading) {
-                          return Center(
+                          return const Center(
                             child: CircularProgressIndicator(),
                           );
                         } else if (state is IcecreamLoaded) {
@@ -88,7 +99,7 @@ class StoreScreen extends StatelessWidget {
                             },
                           );
                         } else {
-                          return SizedBox
+                          return const SizedBox
                               .shrink(); // Return an empty widget for other states
                         }
                       },

@@ -11,25 +11,6 @@ class QuantityCounter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cart = context.watch<CartBloc>().state.cartItems;
-    //get index of iceCream in cart
-    bool found = false;
-    int i = -1;
-    int quantity = 0;
-    if (cart.isNotEmpty) {
-      for (var item in cart) {
-        i++;
-        if (item.iceCream == iceCream) {
-          found = true;
-          break;
-        }
-      }
-      quantity = cart[i].quantity;
-    }
-
-    log("found: ${found}");
-    log("index: ${i}");
-
     // getting value of quantity
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -39,11 +20,11 @@ class QuantityCounter extends StatelessWidget {
             padding: MaterialStateProperty.all(const EdgeInsets.all(6)),
             minimumSize: MaterialStateProperty.all(Size.zero),
             backgroundColor: MaterialStateColor.resolveWith(
-                (states) => Color.fromARGB(255, 230, 233, 251)),
+                (states) => const Color.fromARGB(255, 230, 233, 251)),
           ),
           icon: const Icon(
             Icons.remove,
-            color: Color(0xff4c5cbf),
+            color: Color(0xff6E7E98),
           ),
           onPressed: () {
             // context.read<CartBloc>().add(RemoveIceCreamEvent(iceCream));
@@ -53,12 +34,35 @@ class QuantityCounter extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Text(
-            quantity.toString(),
-            style: TextStyle(
-              color: Color(0xff4c5cbf),
-              fontSize: 14,
-            ),
+          child: BlocBuilder<CartBloc, CartState>(
+            builder: (context, state) {
+              final cart = context.select((CartBloc cartBloc) =>
+                  cartBloc.state.cartItems); //get index of iceCream in cart
+              bool found = false;
+              log('run that back');
+              log(cart.length.toString());
+              int i = -1;
+              int quantity = 0;
+              if (cart.isNotEmpty) {
+                for (var item in cart) {
+                  i++;
+                  log(item.iceCream.toString());
+                  if (item.iceCream.name == iceCream.name) {
+                    found = true;
+                    quantity = cart[i].quantity;
+                    break;
+                  }
+                }
+              }
+              log(found.toString());
+              return Text(
+                quantity.toString(),
+                style: const TextStyle(
+                  color: Color(0xff6E7E98),
+                  fontSize: 14,
+                ),
+              );
+            },
           ),
         ),
         IconButton(
@@ -66,11 +70,11 @@ class QuantityCounter extends StatelessWidget {
             padding: MaterialStateProperty.all(const EdgeInsets.all(6)),
             minimumSize: MaterialStateProperty.all(Size.zero),
             backgroundColor: MaterialStateColor.resolveWith(
-                (states) => Color.fromARGB(255, 230, 233, 251)),
+                (states) => const Color.fromARGB(255, 230, 233, 251)),
           ),
           icon: const Icon(
             Icons.add,
-            color: Color(0xff4c5cbf),
+            color: Color(0xff6E7E98),
           ),
           onPressed: () {
             // context.watch<CartBloc>().add(AddIceCreamEvent(iceCream));

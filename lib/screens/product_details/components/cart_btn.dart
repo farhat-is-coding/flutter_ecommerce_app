@@ -30,11 +30,11 @@ class CartButton extends StatelessWidget {
             children: [
               Icon(
                 Icons.shopping_cart,
-                color: Color(0xff4c5cbf),
+                color: Color(0xff6E7E98),
               ),
               Text(
                 'Add to Cart',
-                style: TextStyle(color: Color(0xff4c5cbf)),
+                style: TextStyle(color: Color(0xff6E7E98),),
               ),
             ],
           ),

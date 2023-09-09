@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:ui';
 
 // import 'package:card_swiper/card_swiper.dart';
@@ -25,7 +26,8 @@ class HomeScreen extends StatelessWidget {
           'Home Screen',
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Colors.cyanAccent.shade700,
+        centerTitle: true,
+        backgroundColor: const Color(0xff6E7E98),
         actions: [
           BlocBuilder<CartBloc, CartState>(
             builder: (context, state) {
@@ -36,19 +38,24 @@ class HomeScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(right: 8.0),
                 child: IconButton(
                   icon: badges.Badge(
+                    badgeAnimation: const badges.BadgeAnimation.scale(
+                      animationDuration: Duration(
+                        milliseconds: 300,
+                      ),
+                    ),
                     position: badges.BadgePosition.topEnd(top: -15, end: -12),
-                    badgeStyle: badges.BadgeStyle(
+                    badgeStyle: const badges.BadgeStyle(
                       badgeColor: Colors.white,
                     ),
                     badgeContent: Text(
                       '${cart.length}',
-                      style: TextStyle(
-                        color: Colors.cyanAccent.shade700,
+                      style: const TextStyle(
+                        color: Color.fromARGB(255, 111, 118, 147),
                       ),
                     ),
-                    child: Icon(
+                    child: const Icon(
                       Icons.shopping_cart,
-                      color: const Color.fromARGB(255, 232, 229, 229),
+                      color: Colors.white
                     ),
                   ),
                   onPressed: () {
@@ -65,14 +72,14 @@ class HomeScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Center(
+            const Center(
               child: Text(
                 'What\'s Cold?',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.w600,
-                  color: Colors.cyanAccent.shade700,
+                  color: Color.fromARGB(255, 111, 118, 147),
                 ),
               ),
             ),
@@ -82,7 +89,7 @@ class HomeScreen extends StatelessWidget {
                 return IceCreamItemsSlider();
               },
             ),
-            Center(
+            const Center(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -91,12 +98,12 @@ class HomeScreen extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.w600,
-                      color: Colors.cyanAccent.shade700,
+                      color: Color.fromARGB(255, 111, 118, 147),
                     ),
                   ),
                   Icon(
                     Icons.arrow_forward_ios,
-                    color: Colors.cyanAccent.shade700,
+                    color: Color.fromARGB(255, 111, 118, 147),
                   )
                 ],
               ),

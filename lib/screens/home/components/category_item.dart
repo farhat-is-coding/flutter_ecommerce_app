@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 
 class CategoryItem extends StatelessWidget {
   const CategoryItem({super.key, required this.name, required this.image});
@@ -13,15 +12,16 @@ class CategoryItem extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 3, right: 5, top: 3),
       height: height * 0.25,
       width: width * 0.475,
-      decoration: BoxDecoration(boxShadow: [
-        BoxShadow(
-            color: Colors.black.withOpacity(.05),
-            blurRadius: 10,
-            spreadRadius: 5)
-      ], borderRadius: BorderRadius.circular(12), color: Colors.white),
+      decoration: BoxDecoration(
+        
+        borderRadius: BorderRadius.circular(12),
+        color: const Color.fromARGB(255, 111, 118, 147),
+      ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(12),
         child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+
           children: [
             SizedBox(
               width: width,
@@ -31,9 +31,14 @@ class CategoryItem extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
+            const SizedBox(height: 8,),
             Text(
               name,
-              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+              ),
             ),
           ],
         ),

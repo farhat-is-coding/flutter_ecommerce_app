@@ -6,16 +6,17 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_ecommerce_app/bloc/cart/cart_bloc.dart';
 import 'package:flutter_ecommerce_app/cubit/swiper_cubit/swiper_cubit.dart';
-import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:palette_generator/palette_generator.dart';
+import 'package:flutter_ecommerce_app/model/ice_cream.dart';
 
 //will be replaced by state
-import '../../icecreamdata.dart';
+// import '../../icecreamdata.dart';
 
 class IceCreamItemsSliderCard extends StatelessWidget {
+  final IceCream iceCream;
   final int index;
   const IceCreamItemsSliderCard({
     super.key,
+    required this.iceCream,
     required this.index,
   });
 
@@ -28,7 +29,7 @@ class IceCreamItemsSliderCard extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        color: Color(iceCreamData[index].bgColor),
+        color: Color(iceCream.bgColor),
       ),
       child: BlocBuilder<SwiperCubit, SwiperState>(
         builder: (context, state) {
@@ -53,10 +54,10 @@ class IceCreamItemsSliderCard extends StatelessWidget {
                               vertical: 8.0,
                             ),
                             child: Text(
-                              '${iceCreamData[index].name}',
+                              '${iceCream.name}',
                               style: TextStyle(
-                                  color: Color(iceCreamData[index].textColor),
-                                  fontSize: 25,
+                                  color: Color(iceCream.textColor),
+                                  fontSize: 20,
                                   fontWeight: FontWeight.w700),
                             ),
                           ),
@@ -71,9 +72,9 @@ class IceCreamItemsSliderCard extends StatelessWidget {
                                     horizontal: 14, vertical: 6),
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(20),
-                                    color: Color(iceCreamData[index].btnColor)),
+                                    color: Color(iceCream.btnColor)),
                                 child: Text(
-                                  '${iceCreamData[index].flavor}',
+                                  '${iceCream.flavor}',
                                   style: TextStyle(color: Colors.white),
                                 ),
                               ),
@@ -89,7 +90,7 @@ class IceCreamItemsSliderCard extends StatelessWidget {
                               alignment: Alignment.center,
                               child: Image.asset(
                                 width: width * 0.75,
-                                '${iceCreamData[index].imgurl}',
+                                '${iceCream.imgurl}',
                               )),
                         ),
                       ),
@@ -100,10 +101,10 @@ class IceCreamItemsSliderCard extends StatelessWidget {
                           child: GestureDetector(
                             onTap: () {
                               log('sending the cart event');
-                              log('${iceCreamData[index].name}');
+                              log('${iceCream.name}');
                               context
                                   .read<CartBloc>()
-                                  .add(AddIceCreamEvent(iceCreamData[index]));
+                                  .add(AddIceCreamEvent(iceCream));
                             },
                             child: Container(
                               decoration: BoxDecoration(

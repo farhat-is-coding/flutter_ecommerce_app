@@ -1,7 +1,9 @@
-import 'dart:developer';
+// import 'dart:developer';
 
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_ecommerce_app/cubit/icecream/icecream_cubit.dart';
 import 'package:flutter_ecommerce_app/screens/home/components/showcase_card.dart';
 
 class ShowcaseSlider extends StatelessWidget {
@@ -9,17 +11,19 @@ class ShowcaseSlider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
+    // double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+    final icecreamCubit =
+        context.select((IcecreamCubit icecreamCubit) => icecreamCubit);
     return Container(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
           transform: GradientRotation(1),
           colors: [
-            Color(0xff19A9C1),
-            Color(0xff45BDC3),
-            Color(0xff19A9C1),
-            Color(0xff43C7CB),
+            Color.fromARGB(255, 111, 118, 147),
+            Color.fromARGB(255, 140, 148, 184),
+            Color.fromARGB(255, 111, 118, 147),
+            Color.fromARGB(255, 140, 148, 184),
           ],
         ),
       ),
@@ -35,12 +39,18 @@ class ShowcaseSlider extends StatelessWidget {
             padding: const EdgeInsets.all(10.0),
             child: ShowcaseSliderCard(
               index: index,
+              iceCream: icecreamCubit.iceCreamData[index],
             ),
           );
         },
         itemCount: 5,
-        pagination: const SwiperPagination(),
-        control: const SwiperControl(),
+        pagination: const SwiperPagination(
+          builder: DotSwiperPaginationBuilder(
+            color: Colors.white,
+            activeColor: Color.fromARGB(255, 170, 170, 170),
+          ),
+        ),
+        control: const SwiperControl(color: Colors.white),
       ),
     );
   }

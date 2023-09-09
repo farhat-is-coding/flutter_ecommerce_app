@@ -8,7 +8,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_ecommerce_app/bloc/cart/cart_bloc.dart';
 import 'package:flutter_ecommerce_app/screens/cart/components/card.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'cart_list.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
@@ -26,25 +25,36 @@ class _CartScreenState extends State<CartScreen> {
   double grandTotal = 0.0;
   @override
   Widget build(BuildContext context) {
-    final cart =
-        context.select((CartBloc cartBloc) => cartBloc.state.cartItems);
-    if (cart.isEmpty) {
-      total = 0.0;
-      grandTotal = 0;
-    } else {
-      calculateTotal(cart);
-      calculateGrandTotal();
-    }
-
-    log('cart: ${cart.length}');
-
-    double width = MediaQuery.of(context).size.width;
+    // double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      appBar: AppBar(title: const Text('My Cart')),
+      appBar: AppBar(
+        iconTheme: const IconThemeData(
+          color: Colors.white, //change your color here
+        ),
+        title: const Text(
+          'My Cart',
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+        centerTitle: true,
+        backgroundColor: const Color(0xff6E7E98),
+      ),
       body: BlocBuilder<CartBloc, CartState>(
         builder: (context, state) {
+          final cart =
+              context.select((CartBloc cartBloc) => cartBloc.state.cartItems);
+          // final icecreamCubit =
+          //     context.select((IcecreamCubit icecreamCubit) => icecreamCubit);
+          if (cart.isEmpty) {
+            total = 0.0;
+            grandTotal = 0;
+          } else {
+            calculateTotal(cart);
+            calculateGrandTotal();
+          }
           return Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -58,7 +68,7 @@ class _CartScreenState extends State<CartScreen> {
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
-                            color: Color(0xff4c5cbf),
+                            color: Color(0xff6E7E98),
                           ),
                         ),
                       ),
@@ -85,9 +95,8 @@ class _CartScreenState extends State<CartScreen> {
                                     child: Padding(
                                       padding: const EdgeInsets.only(top: 5.0),
                                       child: ProductCard(
-                                        width: width,
+                                        cartItem: cart[index],
                                         index: index,
-                                        notifyParent: refresh,
                                       ),
                                     ),
                                   ),
@@ -100,9 +109,15 @@ class _CartScreenState extends State<CartScreen> {
                     ),
                   ]
               },
-              Padding(
+              Container(
                 padding: const EdgeInsets.only(
-                  bottom: 10,
+                    bottom: 10, top: 20, left: 2, right: 2),
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade200,
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(40),
+                    topRight: Radius.circular(40),
+                  ),
                 ),
                 child: Column(
                   children: [
@@ -117,6 +132,7 @@ class _CartScreenState extends State<CartScreen> {
                             'Total',
                             style: TextStyle(
                               fontSize: 15,
+                              color: Color.fromARGB(255, 63, 67, 83),
                             ),
                           ),
                         ),
@@ -125,18 +141,19 @@ class _CartScreenState extends State<CartScreen> {
                             right: 15,
                           ),
                           child: Text(
-                            total.toStringAsFixed(2),
+                            '\$ ${total.toStringAsFixed(2)}',
                             style: const TextStyle(
                               fontSize: 15,
+                              color: Color.fromARGB(255, 63, 67, 83),
                             ),
                           ),
                         ),
                       ],
                     ),
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Padding(
+                        Padding(
                           padding: EdgeInsets.only(
                             left: 15,
                           ),
@@ -144,17 +161,19 @@ class _CartScreenState extends State<CartScreen> {
                             'Discount Offer',
                             style: TextStyle(
                               fontSize: 15,
+                              color: Color.fromARGB(255, 63, 67, 83),
                             ),
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(
+                          padding: EdgeInsets.only(
                             right: 15,
                           ),
                           child: Text(
-                            '- \.00',
-                            style: const TextStyle(
+                            '- \$.00',
+                            style: TextStyle(
                               fontSize: 15,
+                              color: Color.fromARGB(255, 63, 67, 83),
                             ),
                           ),
                         ),
@@ -172,7 +191,7 @@ class _CartScreenState extends State<CartScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Padding(
+                        const Padding(
                           padding: EdgeInsets.only(
                             left: 15,
                           ),
@@ -181,18 +200,20 @@ class _CartScreenState extends State<CartScreen> {
                             style: TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.bold,
+                              color: Color.fromARGB(255, 63, 67, 83),
                             ),
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(
+                          padding: const EdgeInsets.only(
                             right: 15,
                           ),
                           child: Text(
-                            grandTotal.toStringAsFixed(2),
-                            style: TextStyle(
+                            '\$ ${grandTotal.toStringAsFixed(2)}',
+                            style: const TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.bold,
+                              color: Color.fromARGB(255, 63, 67, 83),
                             ),
                           ),
                         ),
@@ -203,19 +224,27 @@ class _CartScreenState extends State<CartScreen> {
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all<Color>(
-                              const Color(0xff4c5cbf)),
+                              const Color.fromARGB(255, 130, 149, 179)),
                         ),
                         onPressed: () async {
+                          log('making payment');
                           await makePayment();
                         },
-                        child: SizedBox(
-                          width: width * 0.8,
-                          child: const Text(
-                            'Checkout',
-                            style: TextStyle(
-                              color: Color.fromARGB(255, 230, 233, 251),
-                            ),
-                            textAlign: TextAlign.center,
+                        child: const SizedBox(
+                          width: 150,
+                          height: 50,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Checkout',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.white,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
                           ),
                         ),
                       ),
@@ -249,16 +278,26 @@ class _CartScreenState extends State<CartScreen> {
   Future<void> makePayment() async {
     try {
       //STEP 1: Create Payment Intent
-      paymentIntent = await createPaymentIntent('100', 'USD');
+      paymentIntent = await createPaymentIntent(grandTotal.toString(), 'usd');
 
       //STEP 2: Initialize Payment Sheet
       await Stripe.instance
           .initPaymentSheet(
-              paymentSheetParameters: SetupPaymentSheetParameters(
-                  paymentIntentClientSecret: paymentIntent![
-                      'client_secret'], //Gotten from payment intent
-                  style: ThemeMode.light,
-                  merchantDisplayName: 'Ikay'))
+            paymentSheetParameters: SetupPaymentSheetParameters(
+              paymentIntentClientSecret:
+                  paymentIntent!['client_secret'], //Gotten from payment intent
+              style: ThemeMode.light,
+              merchantDisplayName: 'Ikay',
+              billingDetailsCollectionConfiguration:
+                  const BillingDetailsCollectionConfiguration(
+                // name: CollectionMode.always,
+                email: CollectionMode.always,
+                // phone: CollectionMode.always,
+                address: AddressCollectionMode.full,
+                // attachDefaultsToPaymentMethod: true,
+              ),
+            ),
+          )
           .then((value) {});
 
       //STEP 3: Display Payment sheet
@@ -271,6 +310,7 @@ class _CartScreenState extends State<CartScreen> {
   createPaymentIntent(String amount, String currency) async {
     try {
       //Request body
+      // log('total is ${amount}');
       Map<String, dynamic> body = {
         'amount': calculateAmount(amount),
         'currency': currency,
@@ -285,8 +325,10 @@ class _CartScreenState extends State<CartScreen> {
         },
         body: body,
       );
+      log(response.body.toString());
       return json.decode(response.body);
     } catch (err) {
+      log(err.toString());
       throw Exception(err.toString());
     }
   }
@@ -296,18 +338,23 @@ class _CartScreenState extends State<CartScreen> {
       await Stripe.instance.presentPaymentSheet().then((value) {
         //Clear paymentIntent variable after successful payment
         paymentIntent = null;
+
+        //Refresh the cart
+        context.read<CartBloc>().add(const ClearCartEvent());
+        Navigator.pushReplacementNamed(context, '/success');
       }).onError((error, stackTrace) {
         throw Exception(error);
       });
     } on StripeException catch (e) {
-      print('Error is:---> $e');
+      log('Error is:---> $e');
     } catch (e) {
-      print('$e');
+      log('$e');
     }
   }
 
-  calculateAmount(String amount) {
-    final calculatedAmout = (int.parse(amount)) * 100;
+  String calculateAmount(String amount) {
+    final calculatedAmout = (double.parse(amount) * 100).round();
+    log(calculatedAmout.toString());
     return calculatedAmout.toString();
   }
 }

@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter_ecommerce_app/cubit/icecream/icecream_cubit.dart';
-import 'package:flutter_ecommerce_app/model/ice_cream.dart';
+
 
 part 'filter_state.dart';
 

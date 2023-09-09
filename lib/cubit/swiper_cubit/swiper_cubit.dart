@@ -18,7 +18,7 @@ class SwiperCubit extends Cubit<SwiperState> {
     emit(Swiping(showContent: false, idx: oldIdx));
 
     if (state is Swiping) {
-      Future.delayed(Duration(milliseconds: 50), () {
+      Future.delayed(const Duration(milliseconds: 50), () {
         emit(SwiperInitial(showContent: true, idx: newidx));
       });
     }
