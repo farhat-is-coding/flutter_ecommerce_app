@@ -12,7 +12,7 @@ class FiltersRow extends StatelessWidget {
 
   final List<String> flavors = ['Flavors', 'Strawberry', 'Mint', 'Coffee'];
   final List<String> ratings = ['Ratings', '1', '2', '3', '4', '5'];
-  final List<String> prices = ['Prices', 'Low to High', 'High to Low'];
+  final List<String> prices = ['Prices', '3', '4', '5', '6'];
 
   // Will decide after making its controller
 

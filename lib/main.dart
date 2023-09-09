@@ -8,8 +8,14 @@ import 'package:flutter_ecommerce_app/screens/home/home.dart';
 import 'package:flutter_ecommerce_app/screens/product_details/product_details.dart';
 import 'package:flutter_ecommerce_app/screens/store/store.dart';
 import 'package:flutter_ecommerce_app/screens/cart/cart.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  Stripe.publishableKey =
+      "pk_test_51NizL3HRBepfNKBjiXJ2aD0Dqc5njzjFDrLLFrso06bZX54gZi9EJ7BM7D3qhdFgZ8gNTQB48lLmX6KLCg1yRqpl002EXtrYe1";
+  await dotenv.load(fileName: "assets/.env");
   Animate.restartOnHotReload = true;
   runApp(MyApp());
 }
@@ -47,7 +53,10 @@ class MyApp extends StatelessWidget {
               ],
               child: StoreScreen(),
             ),
-        '/product_details': (context) => const ProductDetailsScreen(),
+        '/product_details': (context) => BlocProvider.value(
+              value: cartBloc,
+              child: const ProductDetailsScreen(),
+            ),
         '/cart': (context) => BlocProvider.value(
               value: cartBloc,
               child: CartScreen(),

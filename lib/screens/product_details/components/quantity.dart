@@ -1,10 +1,36 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_ecommerce_app/bloc/cart/cart_bloc.dart';
+import 'package:flutter_ecommerce_app/model/ice_cream.dart';
 
 class QuantityCounter extends StatelessWidget {
-  const QuantityCounter({super.key});
+  final IceCream iceCream;
+  const QuantityCounter({super.key, required this.iceCream});
 
   @override
   Widget build(BuildContext context) {
+    final cart = context.watch<CartBloc>().state.cartItems;
+    //get index of iceCream in cart
+    bool found = false;
+    int i = -1;
+    int quantity = 0;
+    if (cart.isNotEmpty) {
+      for (var item in cart) {
+        i++;
+        if (item.iceCream == iceCream) {
+          found = true;
+          break;
+        }
+      }
+      quantity = cart[i].quantity;
+    }
+
+    log("found: ${found}");
+    log("index: ${i}");
+
+    // getting value of quantity
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -20,17 +46,15 @@ class QuantityCounter extends StatelessWidget {
             color: Color(0xff4c5cbf),
           ),
           onPressed: () {
-            // setState(() {
-            //   if (counter > 1) {
-            //     counter--;
-            //   }
-            // });
+            // context.read<CartBloc>().add(RemoveIceCreamEvent(iceCream));
+            BlocProvider.of<CartBloc>(context)
+                .add(RemoveIceCreamEvent(iceCream));
           },
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Text(
-            '10',
+            quantity.toString(),
             style: TextStyle(
               color: Color(0xff4c5cbf),
               fontSize: 14,
@@ -49,14 +73,8 @@ class QuantityCounter extends StatelessWidget {
             color: Color(0xff4c5cbf),
           ),
           onPressed: () {
-            // setState(() {
-            //   if (counter < 3) {
-            //     counter++;
-            //   } else {
-            //     _showTopSnackBar(
-            //         context, 'You can buy 3 products or less!');
-            //   }
-            // });
+            // context.watch<CartBloc>().add(AddIceCreamEvent(iceCream));
+            BlocProvider.of<CartBloc>(context).add(AddIceCreamEvent(iceCream));
           },
         ),
       ],

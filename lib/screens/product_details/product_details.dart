@@ -1,6 +1,8 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_ecommerce_app/bloc/cart/cart_bloc.dart';
 import 'package:flutter_ecommerce_app/model/ice_cream.dart';
 import 'package:flutter_ecommerce_app/screens/product_details/components/cart_btn.dart';
 import 'package:flutter_ecommerce_app/screens/product_details/components/image_header.dart';
@@ -20,8 +22,7 @@ class ProductDetailsScreen extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
 
-    final iceCream =
-        ModalRoute.of(context)!.settings.arguments as IceCream;
+    final iceCream = ModalRoute.of(context)!.settings.arguments as IceCream;
     log('${iceCream.name}');
 
     // I am assuming, that cart button, quantity counter will use the BLoC pattern
@@ -40,10 +41,12 @@ class ProductDetailsScreen extends StatelessWidget {
               children: [
                 IceCreamImageHeader(iceCreamImgUrl: iceCream.imgurl),
                 IceCreamInfo(iceCream: iceCream),
-                const QuantityCounter(),
-                CartButton(),
-                //button to view cart
-                //will be replaced later
+                QuantityCounter(
+                  iceCream: iceCream,
+                ),
+                CartButton(
+                  iceCream: iceCream,
+                ),
                 Padding(
                   padding: const EdgeInsets.only(
                     top: 5,

@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_ecommerce_app/bloc/cart/cart_bloc.dart';
+import 'package:flutter_ecommerce_app/model/ice_cream.dart';
 
 class CartButton extends StatelessWidget {
-  const CartButton({super.key});
+  final IceCream iceCream;
+  const CartButton({super.key, required this.iceCream});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +21,10 @@ class CartButton extends StatelessWidget {
             backgroundColor: MaterialStateProperty.all<Color>(
                 const Color.fromARGB(255, 230, 233, 251)),
           ),
-          onPressed: () {},
+          onPressed: () {
+            //add to cart
+            BlocProvider.of<CartBloc>(context).add(AddIceCreamEvent(iceCream));
+          },
           child: const Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

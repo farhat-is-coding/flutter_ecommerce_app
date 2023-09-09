@@ -5,11 +5,9 @@ sealed class CartEvent extends Equatable {
   const CartEvent();
 }
 
-
-
 class AddIceCreamEvent extends CartEvent {
   final IceCream iceCream;
-  AddIceCreamEvent(this.iceCream);
+  const AddIceCreamEvent(this.iceCream);
 
   @override
   List<Object> get props => [iceCream];
@@ -17,8 +15,8 @@ class AddIceCreamEvent extends CartEvent {
 
 class RemoveIceCreamEvent extends CartEvent {
   final IceCream iceCream;
-  RemoveIceCreamEvent(this.iceCream);
+  const RemoveIceCreamEvent(this.iceCream);
 
-   @override
+  @override
   List<Object> get props => [iceCream];
 }

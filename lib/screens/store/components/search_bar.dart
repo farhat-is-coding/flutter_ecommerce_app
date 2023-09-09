@@ -124,11 +124,12 @@ class SearchRow extends StatelessWidget {
                           onPressed: isFilterSelected
                               ? () {
                                   context.read<FilterCubit>().resetFilter();
+
                                   // FilterCubit filterCubit =
                                   //     BlocProvider.of<FilterCubit>(context);
-                                  // context
-                                  //     .read<IcecreamCubit>()
-                                  //     .getIceCreamData(filterCubit);
+                                  context
+                                      .read<IcecreamCubit>()
+                                      .getIceCreamData(filterCubit);
                                 }
                               : () {
                                   // context.read<FilterCubit>().resetFilter();

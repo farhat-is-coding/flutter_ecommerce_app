@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_ecommerce_app/bloc/cart/cart_bloc.dart';
 import 'package:flutter_ecommerce_app/screens/cart/cart_list.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
@@ -17,12 +19,15 @@ class ProductCard extends StatefulWidget {
 }
 
 class _ProductCardState extends State<ProductCard> {
-  double left = 0;
+  // double left = 0;
   //DO NOT STORE AMOUNT HERE - STORE IT WITH THE ACTUAL CART CUZ THIS IS A DISASTER
   //(only for testing purposes)
   int amount = 1; //amount aka quantity
+
   @override
   Widget build(BuildContext context) {
+    var cart = BlocProvider.of<CartBloc>(context);
+    List iceCream = cart.state.cartItems;
     return Center(
       child: Container(
         width: widget.width * 0.9,
@@ -65,37 +70,34 @@ class _ProductCardState extends State<ProductCard> {
                   height: 100,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
-                    image: const DecorationImage(
-                      image: AssetImage('assets/ice/1.png'),
+                    image: DecorationImage(
+                      image: AssetImage(
+                          '${iceCream[widget.index].iceCream.imgurl}'),
                       fit: BoxFit.cover,
                     ),
                   ),
                 ),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      ' ${cartList[widget.index]}',
+                      '${iceCream[widget.index].iceCream.name}',
                       style: const TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: 5),
+                    const SizedBox(height: 5),
                     //+ - buttons
                     Row(
                       children: [
                         GestureDetector(
                           onTap: () {
-                            setState(() {
-                              amount--;
-                              if (amount == 0) {
-                                cartList.remove(cartList[widget.index]);
-                                widget.notifyParent();
-                              }
-                            });
+                            context.read<CartBloc>().add(RemoveIceCreamEvent(
+                                iceCream[widget.index].iceCream));
+                            widget.notifyParent();
                           },
                           child: Container(
                             width: 20,
@@ -108,13 +110,13 @@ class _ProductCardState extends State<ProductCard> {
                           ),
                         ),
                         SizedBox(width: 5),
-                        Text('${amount.toString()}'),
+                        Text('${iceCream[widget.index].quantity}'),
                         SizedBox(width: 5),
                         GestureDetector(
                           onTap: () {
-                            setState(() {
-                              amount++;
-                            });
+                            context.read<CartBloc>().add(AddIceCreamEvent(
+                                iceCream[widget.index].iceCream));
+                            widget.notifyParent();
                           },
                           child: Container(
                             width: 20,
@@ -134,7 +136,7 @@ class _ProductCardState extends State<ProductCard> {
                           ),
                         ),
                         Text(
-                          '04.00',
+                          '${iceCream[widget.index].iceCream.price}',
                           style: TextStyle(
                             fontSize: 15,
                           ),
