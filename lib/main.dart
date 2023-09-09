@@ -1,9 +1,12 @@
+// import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_ecommerce_app/bloc/cart/cart_bloc.dart';
 import 'package:flutter_ecommerce_app/cubit/filter/filter_cubit.dart';
 import 'package:flutter_ecommerce_app/cubit/icecream/icecream_cubit.dart';
+import 'package:flutter_ecommerce_app/cubit/swiper_cubit/swiper_cubit.dart';
 import 'package:flutter_ecommerce_app/screens/home/home.dart';
 import 'package:flutter_ecommerce_app/screens/product_details/product_details.dart';
 import 'package:flutter_ecommerce_app/screens/store/store.dart';
@@ -36,10 +39,21 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => BlocProvider.value(
-              value: cartBloc,
+        '/': (context) => MultiBlocProvider(
+              providers: [
+                BlocProvider.value(
+                  value: cartBloc,
+                ),
+                BlocProvider(
+                  create: (context) => SwiperCubit(),
+                ),
+              ],
               child: const HomeScreen(),
             ),
+        // BlocProvider.value(
+        //   value: cartBloc,
+        //   child: const HomeScreen(),
+        // ),
         '/store': (context) => MultiBlocProvider(
               providers: [
                 // IcecreamCubit responds to the filters

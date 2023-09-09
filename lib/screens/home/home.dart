@@ -10,6 +10,7 @@ import 'package:flutter_ecommerce_app/screens/home/components/items_slider.dart'
 import 'package:flutter_ecommerce_app/screens/home/components/showcase_slider.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 // import 'package:flutter_svg/flutter_svg.dart';
+import 'package:badges/badges.dart' as badges;
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -20,12 +21,41 @@ class HomeScreen extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home Screen'),
+        title: const Text(
+          'Home Screen',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Colors.cyanAccent.shade700,
         actions: [
-          IconButton(
-            icon: const Icon(Icons.shopping_cart),
-            onPressed: () {
-              Navigator.pushNamed(context, '/cart');
+          BlocBuilder<CartBloc, CartState>(
+            builder: (context, state) {
+              // get total items in cart
+              final cart = context
+                  .select((CartBloc cartBloc) => cartBloc.state.cartItems);
+              return Padding(
+                padding: const EdgeInsets.only(right: 8.0),
+                child: IconButton(
+                  icon: badges.Badge(
+                    position: badges.BadgePosition.topEnd(top: -15, end: -12),
+                    badgeStyle: badges.BadgeStyle(
+                      badgeColor: Colors.white,
+                    ),
+                    badgeContent: Text(
+                      '${cart.length}',
+                      style: TextStyle(
+                        color: Colors.cyanAccent.shade700,
+                      ),
+                    ),
+                    child: Icon(
+                      Icons.shopping_cart,
+                      color: const Color.fromARGB(255, 232, 229, 229),
+                    ),
+                  ),
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/cart');
+                  },
+                ),
+              );
             },
           ),
         ],
